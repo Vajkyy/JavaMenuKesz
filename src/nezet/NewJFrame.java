@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import modell.Konfiguracio;
 
 public class NewJFrame extends javax.swing.JFrame {
 
@@ -34,10 +35,10 @@ public class NewJFrame extends javax.swing.JFrame {
         jBtnReset = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMnKonfiguracio = new javax.swing.JMenu();
-        mnuPrgBetoltes = new javax.swing.JMenuItem();
-        mnuPrgMentes = new javax.swing.JMenuItem();
+        mnuKonfigBetoltes = new javax.swing.JMenuItem();
+        mnuKonfigMentes = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mnuPrgKilepes = new javax.swing.JMenuItem();
+        mnuKonfigKilepes = new javax.swing.JMenuItem();
         jMnProgram = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -107,30 +108,30 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jMnKonfiguracio.setText("Konfiguráció");
 
-        mnuPrgBetoltes.setText("Betöltés...");
-        mnuPrgBetoltes.addActionListener(new java.awt.event.ActionListener() {
+        mnuKonfigBetoltes.setText("Betöltés...");
+        mnuKonfigBetoltes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuPrgBetoltesActionPerformed(evt);
+                mnuKonfigBetoltesActionPerformed(evt);
             }
         });
-        jMnKonfiguracio.add(mnuPrgBetoltes);
+        jMnKonfiguracio.add(mnuKonfigBetoltes);
 
-        mnuPrgMentes.setText("Mentés...");
-        mnuPrgMentes.addActionListener(new java.awt.event.ActionListener() {
+        mnuKonfigMentes.setText("Mentés...");
+        mnuKonfigMentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuPrgMentesActionPerformed(evt);
+                mnuKonfigMentesActionPerformed(evt);
             }
         });
-        jMnKonfiguracio.add(mnuPrgMentes);
+        jMnKonfiguracio.add(mnuKonfigMentes);
         jMnKonfiguracio.add(jSeparator1);
 
-        mnuPrgKilepes.setText("Kilépés...");
-        mnuPrgKilepes.addActionListener(new java.awt.event.ActionListener() {
+        mnuKonfigKilepes.setText("Kilépés...");
+        mnuKonfigKilepes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuPrgKilepesActionPerformed(evt);
+                mnuKonfigKilepesActionPerformed(evt);
             }
         });
-        jMnKonfiguracio.add(mnuPrgKilepes);
+        jMnKonfiguracio.add(mnuKonfigKilepes);
 
         jMenuBar1.add(jMnKonfiguracio);
 
@@ -164,28 +165,28 @@ public class NewJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuPrgKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrgKilepesActionPerformed
+    private void mnuKonfigKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuKonfigKilepesActionPerformed
         kilepes();
-    }//GEN-LAST:event_mnuPrgKilepesActionPerformed
+    }//GEN-LAST:event_mnuKonfigKilepesActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //System.out.println("kilépés folyamatban...");
         kilepes();
     }//GEN-LAST:event_formWindowClosing
 
-    private void mnuPrgMentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrgMentesActionPerformed
+    private void mnuKonfigMentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuKonfigMentesActionPerformed
         //JFileChooser jfc = new JFileChooser();//Documents könnyvtár
         String hely = System.getProperty("user.dir");
         JFileChooser jfc = new JFileChooser(hely);//aktuális projekt könnyvtár
-        
+
         /* jfc paraméterezése: */
         File kivalasztottFajl = new File(hely + "\\" + txtNev.getText() + ".txt");
         System.out.println("fajl = " + kivalasztottFajl);
         jfc.setSelectedFile(kivalasztottFajl);
-        
+
         /* jfc megjelenítése, vizsgálata */
         int gomb = jfc.showSaveDialog(rootPane);//null | this <-- ez ua, mint rootPane
-        
+
         if (gomb == JFileChooser.APPROVE_OPTION) {
             kivalasztottFajl = jfc.getSelectedFile();
             String fajlElerese = kivalasztottFajl.getAbsolutePath();
@@ -200,7 +201,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         /* a mentés alapszerkezete: */
 //        Path path = Path.of("kimenet.txt");//hova írjuk
 //        byte[] bytes = jTextField1.getText().getBytes();//mit írunk
@@ -210,52 +211,49 @@ public class NewJFrame extends javax.swing.JFrame {
 //        } catch (IOException ex) {// generált kód!!!
 //            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-    }//GEN-LAST:event_mnuPrgMentesActionPerformed
+    }//GEN-LAST:event_mnuKonfigMentesActionPerformed
 
-    private void mnuPrgBetoltesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrgBetoltesActionPerformed
+    private void mnuKonfigBetoltesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuKonfigBetoltesActionPerformed
         /* a beolvasás alapszerkezete: */
         JFileChooser jfc = new JFileChooser(System.getProperty("user.dir"));//aktuális projekt könnyvtár
         int gomb = jfc.showSaveDialog(rootPane);//null | this <-- ez ua, mint rootPane
         if (gomb == JFileChooser.APPROVE_OPTION) {
             File kivalasztottFajl = jfc.getSelectedFile();
             try {
-                String adatok = Files.readString(kivalasztottFajl.toPath());
+                String egySor = Files.readString(kivalasztottFajl.toPath());
                 System.out.println("A beolvasott fájl tartalma: ");
-                System.out.println(adatok);
+                System.out.println(egySor);
+
+                /* sorok feldolgozása */                
+                Konfiguracio modell = new Konfiguracio(egySor);                
                 
-                /* sorok feldolgozása */
-                String[] sorok = adatok.split("\n");
-                String nev = sorok[0].substring(sorok[0].indexOf(" ")+1);
-                String strSzam = sorok[1].substring(sorok[1].indexOf("(")+1, sorok[1].length()-1);
-                int index = Integer.parseInt(strSzam);
-                String strChb = sorok[2].split(" ")[1];
-                boolean chb = strChb.startsWith("nem")?false:true;
-                
-                txtNev.setText(nev);
-                cmbSzak.setSelectedIndex(index);
-                chbHirlevel.setSelected(chb);
+                txtNev.setText(modell.getNev());
+                cmbSzak.setSelectedIndex(modell.getSzakIndex());
+                chbHirlevel.setSelected(modell.isHirlevel());
             } catch (IOException ex) {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_mnuPrgBetoltesActionPerformed
+    }//GEN-LAST:event_mnuKonfigBetoltesActionPerformed
 
     private void jBtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnResetActionPerformed
-      txtNev.setText("");
-      cmbSzak.setSelectedIndex(0);
-      chbHirlevel.setSelected(true);
+        txtNev.setText("");
+        cmbSzak.setSelectedIndex(0);
+        chbHirlevel.setSelected(true);
     }//GEN-LAST:event_jBtnResetActionPerformed
 
-    private String tartalom(){
+    private String tartalom() {
         String nev = txtNev.getText();
         //String szak = cmbSzak.getSelectedItem().toString();
-        String szak = (String)cmbSzak.getSelectedItem();
+        String szak = (String) cmbSzak.getSelectedItem();
         boolean hirlevel = chbHirlevel.isSelected();
-        String msg = "név: " + nev
-                +"\nszak: %s(%d)".formatted(szak, cmbSzak.getSelectedIndex())
-                +"\nhírlevél: " + (hirlevel?"kér":"nem kér");
-        return msg;
+//        String msg = "név: " + nev
+//                +"\nszak: %s(%d)".formatted(szak, cmbSzak.getSelectedIndex())
+//                +"\nhírlevél: " + (hirlevel?"kér":"nem kér");                
+        String SEP = " ";
+        return nev + SEP + cmbSzak.getSelectedIndex() + SEP + hirlevel;
     }
+
     private void kilepes() throws HeadlessException {
         String msg = "Biztos kilépsz?";
         String cim = "KILÉPÉS";
@@ -267,10 +265,10 @@ public class NewJFrame extends javax.swing.JFrame {
             int hibaKod = 0;
             System.exit(hibaKod);
         }
-        
+
         //System.out.println("gomb = " + gomb);//YES: 0, NO: 1 , X: -1
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -315,9 +313,9 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMnProgram;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenuItem mnuPrgBetoltes;
-    private javax.swing.JMenuItem mnuPrgKilepes;
-    private javax.swing.JMenuItem mnuPrgMentes;
+    private javax.swing.JMenuItem mnuKonfigBetoltes;
+    private javax.swing.JMenuItem mnuKonfigKilepes;
+    private javax.swing.JMenuItem mnuKonfigMentes;
     private javax.swing.JTextField txtNev;
     // End of variables declaration//GEN-END:variables
 }
